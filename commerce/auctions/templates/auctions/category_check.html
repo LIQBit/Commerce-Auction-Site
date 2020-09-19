@@ -1,0 +1,34 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+  <h2>{{ current_category }}</h2>
+  
+  {% for item in categorylist %}
+  <div class="container">
+    <div class ="container" id ="listings" style="max-width: 700px; border: 1px solid black; margin: 10px;"> 
+
+      <div class="row">
+
+        <div class ="col-sm" style="align-items: center; padding: 10px;">
+          <img src="{{item.pic}}" alt="" style="height: 300px; width: 320px; padding: 5px;">
+        </div>
+
+        <div class="col-sm" style="padding-left: 15px; padding-top: 5px;"> 
+          <h4>{{ item.title }}</h4>
+          <p>${{item.price}}</p>
+          <p>{{item.description}}</p> 
+          <br>
+          <br>
+          <br>
+          <br>
+          <a href="{% url 'listing' item.listing_id %}"><button type="submit" class="btn btn-primary">View</button></a>   
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+  <br>
+{% endfor %}
+
+{% endblock %}

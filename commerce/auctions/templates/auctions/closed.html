@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if message %}
+
+<div>{{ message }}</div>
+
+{% endif %}
+
+<h2>{{winningobject.title}}</h2>
+
+{% if winningobject.winner == user.username %}
+            <h4>Congratulations! A winner is you!</h4>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTorc_3dRJ894T4OVcDVpQ6ESxNIzuw-p14HA&usqp=CAU" alt="">
+            <p>You won this item.</p>
+{% endif %}
+            
+
+
+
+<div class="container">
+    
+    
+    <ul>
+        <li>Owner: {{winningobject.owner}}</li>
+        <li>Winner: {{winningobject.winner}}</li>
+        <li>Price: ${{winningobject.winningprice}}</li>
+    </ul>
+</div>
+
+
+{% endblock %}

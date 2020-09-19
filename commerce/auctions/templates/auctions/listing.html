@@ -1,0 +1,113 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if message %}
+
+    <div class="alert alert-{{message_type}}">{{ message }}</div>
+
+{% endif %}
+
+<div class="container">
+
+
+   <div class="row">
+
+        <div class ="col-sm">
+            
+            <img src="{{item.pic}}" alt="" height= "400px" width="450px" style=" box-shadow: 10px 10px 5px grey; border-radius: 15px;">
+            
+            
+
+        </div>
+
+        <div class="col-sm"> 
+
+            <h1>{{item.title}}</h1>
+            <p>{{item.description}}</p>
+            <h1>Current Bid: ${{item.price}}</h1>
+            <br>
+            {% if user.is_authenticated %}
+                {% if added %}
+
+                    <a href="{% url 'addwatchlist' item.pk %}"><button class="btn btn-danger btn-sm"><small>Remove From Watchlist</small></button></a>
+
+                {% else %}
+
+                    <a href="{% url 'addwatchlist' item.pk %}"><button class="btn btn-success btn-sm"><small>Add to Watchlist</small></button></a>
+
+                
+
+                {% endif %}
+            {% endif %}
+            
+
+            
+            <div style="padding-top: 20px;"><h3>Place bid</h3>
+            {% if user.is_authenticated %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="number" class="form-control mb-2" name="bid" placeholder="Enter your bid" style="width: 30%;">
+                    <button type="submit" class="btn btn-primary">Place Bid</button>
+                </form>
+                <br>
+            {% endif %}
+
+            </div>
+
+            {% if user.username == item.owner %}
+                <form action="{% url 'closebid' item.pk %}">
+                    <button type="submit" class="btn btn-danger">Close Bid</button>
+                </form>
+            {% endif %}
+            <br>
+            <h5>Details</h5>
+            <ul>
+                <li><b>Owner:</b> {{item.owner}}</li>
+                <li><b>Category</b>: {{item.category}}</li>
+                
+            </ul>
+            <br>
+            {% if user.is_authenticated %}
+            <div class="container">
+                <form action="{% url 'submitcomment' item.pk  %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">Leave a comment:</label>
+                        <textarea class="form-control" name="comment" id="" cols="30" rows="3" placeholder="Write your comment here..."></textarea>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                    
+                </form>
+            {% endif %}        
+                
+
+            </div>
+            <br>
+            
+            <div style="padding-right: 30px;">
+            {% if comments %}
+            <h2>Comments</h2>
+            <div class="container">
+                {% for comment in comments %}
+                <div class="" style="max-width: 500px; padding-left: 5px;">
+                    <h5>{{comment.user}}</h5>
+                    <p><small>{{comment.time}}</small></p>
+                    <p>{{comment.comment}}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <p>No comments</p>
+            {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Create a New Listing</h2>
+
+
+    <div class="createPage" style="padding-top:20px ;">
+        <form action="{% url 'create' %}" method="POST">
+            {%csrf_token%}
+            <div class="form-group">
+                <label>Title:</label>
+                <input type="text" class="form-control" name="title" style="width: 20%;" placeholder="Title">
+                <br>
+            </div>
+
+            <div class="form-group">
+                <label>Description:</label>
+                <textarea name="description" class="form-control" id="" rows="10" 
+                style="width: 80%; margin-top: 0px; margin-bottom: 50px;" placeholder="Enter your description here..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="">Starting Bid</label>
+                <input type="text" class="form-control" name="price" style="width: 20%;" >
+            </div>
+
+            <div class="form-group">
+                <label for="">Image URL</label>
+                <input type="text" class="form-control" name="pic" style="width: 20%;" >
+            </div>
+
+            <div class="form-group"  >
+                <label >Category</label>
+                <select class="form-control"  name="category" style="width: 20%;" required>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Toys">Toys</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Home">Home</option>
+                    <option value="Other">Other</option>
+                </select>
+                
+            </div>
+
+
+
+            <button type="submit" class="btn-lg btn-outline-primary" style="margin-top: 20px;">Submit</button>
+
+            
+
+        </form>
+    </div>
+
+
+   
+{% endblock %}

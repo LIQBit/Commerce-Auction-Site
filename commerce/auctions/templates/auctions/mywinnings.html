@@ -1,0 +1,41 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2>Your Winnings</h2>
+
+<div class="container">
+
+    
+    {% for product in products %}
+        <div class="container">
+            
+            <h4>{{product.title}}</h4>
+
+                <li> Owner: {{product.owner}}</li>
+                <li> Winner: {{product.winner}}</li>
+                <li> Final Price: ${{product.winningprice}}</li>
+                
+    
+        </div>
+
+    {% endfor %}
+    
+
+
+
+
+
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+
+
+<div class="container">
+    <h2>Active Listings in {{current_category}}</h2>
+</div>
+
+
+    {% if empty %}
+
+        <h2>No Listings</h2>
+
+    {% else %}
+    
+        {% for category in CategoryList %} 
+            <div class="container">   
+                <div class ="container" id ="listings" style="max-width: 700px; border: 1px solid black; margin: 10px ;"> 
+            
+                    <div class="row">
+
+                        <div class ="col-sm" style="align-items: center; padding: 10px;">
+                            <img src="{{category.pic}}" alt="" style="height: 300px; width: 320px;">
+                        </div>
+
+                        <div class="col-sm" style="padding-left: 15px; padding-top: 12px;"> 
+
+                            <h4>{{category.title}}</h4>
+                            <p>{{category.description}}</p>
+                            <p>{{category.category}}</p>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <a href="{% url 'listing' i.pk %}"><button type="submit" class="btn btn-primary">View</button></a>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+      
+
+    
+
+    
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock %}
