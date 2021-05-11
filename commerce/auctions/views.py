@@ -12,6 +12,7 @@ from django import forms
 def index(request):
     aList = Watchlist.objects.filter(user=request.user.username)
     watchlistcount = len(aList)
+    print("hello", aList)
 
     return render(request, "auctions/index.html", {
         "items": Listing.objects.all(),
