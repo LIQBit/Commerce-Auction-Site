@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from datetime import datetime
-from annoying.functions import get_object_or_None
+#from annoying.functions import get_object_or_None
 from .models import User, Listing, Bids, Comments, Watchlist, Winner
 from django import forms
 
@@ -268,7 +268,7 @@ def watchlistpage(request):
 def closebid(request, listing_id):
     winobj = Winner()
     listobj = Listing.objects.get(listing_id=listing_id)
-    obj = get_object_or_None(Bids, listingid=listing_id)
+    obj = ""
     aList = Watchlist.objects.filter(user=request.user.username)
     watchlistcount = len(aList)
     if not obj:
