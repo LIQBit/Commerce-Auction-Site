@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from datetime import datetime
-from annoying.functions import get_object_or_None
+#from annoying.functions import get_object_or_None
 from .models import User, Listing, Bids, Comments, Watchlist, Winner
 from django import forms
 
